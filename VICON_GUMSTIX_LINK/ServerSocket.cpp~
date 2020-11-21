@@ -1,0 +1,18 @@
+
+#include "class_socket.h"
+
+int main()
+{
+	class_socket *Server= new class_socket("server",8085);
+
+	Server->serverExists();
+/*
+	Server->startListening();
+
+	std::string CadenaRecibida=Server->receive_InfoServer();
+	printf("Data_received: %s\n",CadenaRecibida.data());
+
+	int valA=Server->send_infoServer("Y fuera...");
+*/	
+	return 0;
+}

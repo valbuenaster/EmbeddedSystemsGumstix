@@ -1,0 +1,14 @@
+# Location of the Vicon libraries in my computer, you need to copy Client.h and libViconDataStreamSDK_CPP.so in the same path
+VICON_LIB=/usr/lib/
+VICON_INCLUDE=/usr/include/
+
+all:	Code
+
+Code:	vicon_pos.o Code.cpp
+	g++ vicon_pos.o -I$(VICON_INCLUDE) -L$(VICON_LIB) -lViconDataStreamSDK_CPP -o Code Code.cpp
+
+vicon_pos.o: vicon_pos.cpp
+	g++ -I$(VICON_INCLUDE) -L$(VICON_LIB) -lViconDataStreamSDK_CPP -c vicon_pos.cpp
+
+clean:
+	rm -rf *o Code

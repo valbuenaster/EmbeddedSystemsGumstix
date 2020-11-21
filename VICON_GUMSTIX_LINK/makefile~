@@ -1,0 +1,21 @@
+# Location of the Vicon libraries in my computer, you need to copy Client.h and libViconDataStreamSDK_CPP.so in the same path
+VICON_LIB=/usr/lib/
+VICON_INCLUDE=/usr/include/
+
+all:				mainServer ClientSocket
+
+mainServer:			vicon_pos.o mainServer.cpp
+					g++ vicon_pos.o -I$(VICON_INCLUDE) -L$(VICON_LIB) -lViconDataStreamSDK_CPP -o mainServer mainServer.cpp
+
+vicon_pos.o: 		vicon_pos.cpp
+					g++ -I$(VICON_INCLUDE) -L$(VICON_LIB) -lViconDataStreamSDK_CPP -c vicon_pos.cpp
+
+ClientSocket:		class_socket.o ClientSocket.cpp
+					g++ class_socket.o -o ClientSocket ClientSocket.cpp
+
+class_socket.o:		class_socket.cpp
+					g++ -c class_socket.cpp
+
+clean:
+					rm -rf *o mainServer
+					rm -rf *o ClientSocket
